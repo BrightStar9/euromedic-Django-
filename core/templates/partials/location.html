@@ -1,0 +1,48 @@
+{% load static %}
+<!-- Location Box Start-->
+<div class="lqd-column col-md-4 col-sm-6 col-12 lokacija mb-3">
+  <div class="fancy-box fancy-box-tour fancy-box-heading-md">
+    <figure class="fancy-box-image">
+      {% if location.small_image %}
+        <img src="{{ location.small_image.url }}" alt="{{location.name}}" loading="lazy">
+      {% elif location.hero_image %}
+        <img src="{{ location.hero_image.url }}" alt="{{location.name}}" loading="lazy">
+      {% else %}
+        <img style="background: black; height: 300px; width: 100%;"/>
+      {% endif %}
+    </figure>
+    <div class="fancy-box-contents">
+      <a>
+        <div class="fancy-box-header">
+          <a href="{% url "hospitals-detail" location.slug %}">
+            <h3 class="lh-125 text-primary">{{ location.name }}</h3>
+          </a>
+
+          <div class="d-flex align-items-baseline">
+            <a href="{{ location.location.maps_url }}" target="_blank">
+              <div class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="details">
+                {{ location.location.street }}
+                {{ location.location.number }}
+                <span class="city">{{ location.location.city }}</span>
+              </div><!-- /.details -->
+            </a>
+          </div>
+
+        </div><!-- /.fancy-box-header -->
+      </a>
+    </div><!-- /.fancy-box-info -->
+
+    <div class="fancy-box-footer">
+
+      <a class="footer-half" href="{% url "hospitals-detail" location.slug %}">Detaljnije</a>
+      <a class="footer-half bg-primary footer-btn"
+         href="tel:{{ location.phone_numbers.all.0 }}">Zakaži termin</a>
+
+    </div><!-- /.fancy-box-footer -->
+
+  </div><!-- /.fancy-box-contents -->
+</div>
+<!-- Location Box End-->

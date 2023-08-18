@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    <title>Euromedik | Usluga - {{ service.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <main id="content" class="content">
+
+        <section class="vc_row py-50 py-md-100 d-flex cross-bg">
+            <div class="container-fluid align-self-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center text-white">
+                        <h1 class="fs-46 font-weight-bold">{{ service.name }}</h1>
+                        {% if service.description %}
+                            <p class="service-description">{{ service.description | safe }}</p>
+                        {% endif %}
+                        <div class="price font-weight-bold">
+                            {% if not service.price %}
+                                Cena na upit
+                            {% else %}
+                                {% if service.price_extra %}
+                                    {{ service.price | floatformat:"0" | intcomma }} -
+                                    {{ service.price_extra | floatformat:"0" | intcomma }}
+                                {% elif service.show_price_from %}
+                                    Od {{ service.price | floatformat:"0" | intcomma }}
+                                {% else %}
+                                    {{ service.price | floatformat:"0" | intcomma }}
+                                {% endif %}
+                                <span class="fw-normal">RSD</span>
+                            {% endif %}
+                        </div>
+                        {% if service.blog_link %}
+                            <a href="{{ service.blog_link }}" class="text-uppercase btn btn-bordered border-white
+                        btn-hover-secondary px-2 font-size-17 font-weight-bold">
+                                Saznajte više o ovom pregledu ili proceduri</a>
+                        {% endif %}
+                        <ol class="breadcrumb reset-ul inline-nav comma-sep-li bordered text-light mt-25">
+                            <li><a href="{% url "categories" %}"><span>Usluge</span></a>
+                            </li>
+                            <li class="ml-0"><a
+                                    href="{% url  "categories-detail" service.category.slug %}"><span>{{ service.category }}</span></a>
+                            </li>
+                            <li class="ml-0"><span>{{ service.name }}</span></li>
+                        </ol>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Boxes -->
+        <section class="pt-35">
+            <div class="container">
+                <h3 class="font-weight-normal text-tamno text-center text-md-left">
+                    Ovaj pregled možete obaviti na sledećim lokacijama:
+                </h3>
+                <div class="row lokacije">
+                    <div class="container">
+                        <ul id="lista-lokacija">
+                            {% for hospital in service.hospitals.all %}
+                                <li>
+
+                                    <div class="hospital-name">
+
+                                <span>
+                                    <a href="{% url "hospitals-detail" hospital.slug %}">{{ hospital.display_html_safe | safe }}</a>
+                                </span>
+                                    </div>
+
+                                    <div class="hospital-location">
+                                        <a href="{{ hospital.location.maps_url }}"
+                                           target="_blank">
+                                    <span class="text-tamno">
+                                    {{ hospital.location.display_html_safe | safe }}
+                                    </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="hospital-schedule-appointment">
+                                        <div class="hospital-location phone">
+                                            <a href="tel:{{ hospital.phone_numbers.all.0 }}">{{ hospital.phone_numbers.all.0.number }}</a><br
+                                                class="d-none d-lg-block">
+                                            <a href="tel:{{ hospital.phone_numbers.all.1 }}">{{ hospital.phone_numbers.all.1.number }}</a>
+                                        </div>
+
+                                        <div class="zakazi">
+                                    <span>
+                                        <a href="tel:{{ hospital.phone_numbers.all.2 }}"
+                                           class="btn btn-primary border-radius-0 font-weight-bold">ZAKAŽI</a>
+                                    </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+
+        <!-- Additional info -->
+        <section class="pt-35 pb-50">
+        <div class="container">
+            <h3 class="font-weight-normal text-tamno text-center text-md-left">
+                Detalji:
+            </h3>
+
+            <div class="row detalji-usluge">
+                <div class="container">
+                    
+                    {% if service.additional_info %}
+                    {{ service.additional_info | safe }}
+                    {% endif %}
+
+                </div>
+            </div>
+        <!-- Related Services -->
+        <div id="pricing-content">
+            <section class="vc_row pt-30 pb-80">
+                <div class="align-self-center">
+                    {% if service.related_services.count > 0 %}
+                    <h3 class="font-weight-normal text-tamno text-center text-md-left">
+                        Povezane usluge:
+                    </h3>
+
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="row">
+                                
+                                    {% for related_svc in service.related_services.all %}
+                                    <div class="col-12 col-md-6 d-flex flex-column text-white">
+                                        <div class="category-single"><a href="{% url "services-detail" related_svc.slug %}">
+                                            {{ related_svc.name }}</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+        </section>
+        </div>
+    </div>
+</section>
+</main>
+
+{% endblock %}

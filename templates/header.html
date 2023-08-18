@@ -1,0 +1,219 @@
+{% load static %}
+<header class="main-header main-header-overlay bg-primary py-10 py-xl-0 box-shadow-1"
+        data-react-to-megamenu="true"
+        data-sticky-header="true"
+        data-sticky-options="{ 'stickyTrigger': 'first-section' }">
+
+    <div class="secondarybar-wrap bg-primary py-1">
+        <div class="container-fluid secondarybar-container">
+            <div class="secondarybar">
+                <a href="/">
+                    <div class="row secondarybar-row align-items-center">
+                        <div class="lqd-column col-12 text-center py-20 topbar-background"></div>
+                    </div><!-- /.secondarybar-row -->
+                </a>
+            </div><!-- /.secondarybar -->
+        </div><!-- /.secondarybar-container -->
+    </div>
+
+    <div class="mainbar-wrap bg-primary">
+        <div class="megamenu-hover-bg"></div><!-- /.megamenu-hover-bg -->
+        <div class="container-fluid mainbar-container px-0">
+            <div class="mainbar">
+                <div class="row mainbar-row align-items-lg-stretch">
+
+                    <div class="d-xl-none col-auto">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/" rel="home">
+								<span class="navbar-brand-inner">
+									<img class="logo-dark"
+                                         src="{% static "img/euromedik-white-logo.svg" %}"
+                                         alt="Euromedik">
+									<img class="logo-sticky"
+                                         src="{% static "img/euromedik-white-logo.svg" %}"
+                                         alt="Euromedik">
+									<img class="mobile-logo-default"
+                                         src="{% static "img/euromedik-white-logo.svg" %}"
+                                         alt="Euromedik">
+									<img class="logo-default"
+                                         src="{% static "img/euromedik-white-logo.svg" %}"
+                                         alt="Euromedik">
+								</span>
+                            </a>
+
+                            <!-- SEARCH 
+                            <div class="ld-module-search">
+								<span class="ld-module-trigger collapsed" role="button"
+                                      data-ld-toggle="true" data-toggle="collapse"
+                                      data-target="#header-search"
+                                      aria-controls="header-search"
+                                      aria-expanded="false">
+									<span class="ld-module-trigger-icon">
+										<i class="fa fa-search"></i>
+									</span>
+								</span>
+                                <div role="search" class="ld-module-dropdown collapse"
+                                     id="header-search" aria-expanded="false"
+                                     style="height: 0px;">
+                                    <div class="ld-search-form-container">
+
+                                        <form class="contact-form header-form solid-bg-input">
+                                            <div class="row justify-content-center">
+                                                <div class="col-12 mb-0">
+                                                    <fieldset>
+                                                        <i class="fa fa-search"></i>
+                                                        <input type="text" value=""
+                                                               id="mobileSuggestSearchHeader"
+                                                               class="form-control mb-0"
+                                                               placeholder="Pretraga">
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+
+                            <button type="button"
+                                    class="navbar-toggle collapsed nav-trigger style-mobile"
+                                    data-toggle="collapse"
+                                    data-target="#main-header-collapse"
+                                    aria-expanded="false"
+                                    data-changeclassnames='{ "html": "mobile-nav-activated overflow-hidden" }'>
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="bars">
+									<span class="bar"></span>
+									<span class="bar"></span>
+									<span class="bar"></span>
+								</span>
+                            </button>
+                        </div><!-- /.navbar-header -->
+                    </div><!-- /.col -->
+
+                    <div class="col-xl-12 col-12 px-0">
+                        <div class="collapse navbar-collapse" id="main-header-collapse">
+                            <ul id="primary-nav"
+                                class="main-nav nav align-items-lg-stretch"
+                                style="justify-content: center;"
+                                data-submenu-options='{ "toggleType":"fade", "handler":"mouse-in-out" }'
+                                data-localscroll="true">
+                                <li>
+                                    <a href="/">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Naslovna</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url "categories" %}">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Usluge</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url "hospitals" %}">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Lokacije</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url "doctors" %}">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Lekari</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url "pricing" %}">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Cenovnik</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url "review-packages" %}">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Paketi pregleda</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pregledi/">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">O pregledima</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pregledi/karijera/">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Karijera</span>
+										</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pregledi/galerija">
+                                        <span class="link-icon"></span>
+                                        <span class="link-txt">
+											<span class="link-ext"></span>
+											<span class="txt">Galerija</span>
+										</span>
+                                    </a>
+                                </li>
+                            </ul><!-- /#primary-nav  -->
+                        </div><!-- /#main-header-collapse -->
+                    </div><!-- /.col -->
+
+                    <!-- SEARCH 
+                    <div class="col-4 d-none d-xl-block px-0">
+                        <form class="contact-form header-form solid-bg-input">
+                            <div class="row justify-content-center">
+                                <div class="col-12 mb-0">
+                                    <fieldset>
+                                        <i class="fa fa-search"></i>
+                                        <input type="text" value=""
+                                               id="suggestSearchHeader"
+                                               class="form-control mb-0"
+                                               placeholder="Pretraga">
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="searchResultsHeader"></div>
+                    </div>
+                    -->
+
+                
+                </div><!-- /.mainbar-row -->
+            </div><!-- /.mainbar -->
+        </div><!-- /.mainbar-container -->
+    </div><!-- /.mainbar-wrap -->
+</header><!-- /.main-header -->
+
+<div class="d-xl-none lqd-custom-menu lqd-sticky-menu on-bottom custom-menu-sticky">
+    <ul class="reset-ul inline-nav text-center">
+        <li class="px-2"><a href="{% url "categories" %}">Usluge</a></li>
+        <li class="px-2"><a href="{% url "hospitals" %}">Lokacije</a></li>
+        <li class="px-2"><a href="{% url "pricing" %}">Cenovnik</a></li>
+    </ul>
+</div>

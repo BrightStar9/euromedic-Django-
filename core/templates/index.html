@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Euromedik - Ultrazvuk, magnetna rezonanca, Skener, Specijalistički Pregledi</title>
+<meta name="description" content="Euromedik je najveći privatni zdravstveni sistem u Srbiji, osnovan 2002. godine sa ciljem da korisnicima omogući najkvalitetniju medicinsku uslugu." />
+<meta name="keywords" content="euromedik, pregledi, ultrazvuk, medicina, medicinski pregledi, ultrazvuk, magnetna rezonanca, ct skener, ginekolog, ginekologija" />
+<meta property="og:title" content="Euromedik - Dijagnostika, specijalistički pregledi, hirurgija">
+<meta property="og:description" content="Euromedik je najveći privatni zdravstveni sistem u Srbiji, osnovan 2002. godine sa ciljem da korisnicima omogući najkvalitetniju medicinsku uslugu.">
+<meta property="og:image" content="http://euromedik.txlab.org/static/img/share/euromedik-bolnica-stacionar-poliklinika.jpg">
+<meta property="og:url" content="http://euromedic.rs">
+{% endblock %}
+
+{% block content %}
+
+<div id="content" class="content home">
+	<section class="vc_row d-flex bg-image home fade-gradient-md-none">
+		<div class="container-fluid align-self-center">
+			<div class="row align-self-end">
+				<div class="col-12 col-md-8">
+					<div class="row pt-250 py-30 pt-md-210 pb-md-20 pb-lg-50 pt-xl-140">
+						<div class="col-10 offset-1 text-center text-md-left text-primary mobile-inverse-colors">
+							<h2 class="text-transform-none d-inline-flex flex-wrap align-items-center justify-content-center justify-content-md-start mb-2"><span class="mr-2">Dobrodošli u </span><img src="{% static "img/euromedik-logo.svg" %}" style="height: 35px;"></h2>
+							<p class="p-0 mb-0">Na jednom mestu obezbeđena vam je najkvalitetnija medicinska pomoć od strane vodećih specijalista i subspecijalista
+								iz gotovo svih oblasti savremene medicine.</p>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!--
+	<section class="pt-30 py-md-40 d-flex bg-image generic">
+		<div class="container align-self-center">
+			<div class="row justify-content-center">
+				<div class="col-10 text-white text-center">
+					<p class="font-weight-light lh-125 p-0"><span class="text-uppercase font-weight-semibold">Euromedik</span> svojim pacijentima nudi sve vrste<br class="d-none d-md-block"> medicinskih usluga na 11 lokacija. Pretražite naše usluge:</p>
+				</div>
+				<div class="col-10 text-center">
+
+
+					 
+					<form class="contact-form solid-bg-input">
+						<div class="row justify-content-center">
+							<div class="col-12 col-md-9 col-lg-10 text-center text-md-left mb-md-0 mb-3">
+								<fieldset>
+									<input id="suggestSearch" type="text" value="" class="form-control mb-1"
+										placeholder="Pretraga">
+								</fieldset>
+							</div>
+						</div>
+					</form>
+					<div id="searchResults"></div>
+					
+				<a href="{% url "categories" %}" class="text-uppercase btn btn-bordered border-white btn-hover-secondary px-2 font-size-15" id="pretrazite-usluge">Pretražite usluge</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	-->
+	
+	<section class="pt-30 pt-md-200 pb-md-40 d-flex bg-image services">
+		<div class="container align-self-center">
+			<div class="row justify-content-center text-white text-center">
+
+				<div class="col-10 col-md-12 col-lg-10 px-0">
+					<div class="row">
+						
+						<div class="col-12 col-md-4 row-same-height">
+							<div class="card bg-primary px-2 px-lg-3 py-3">
+								<h2 class="font-size-36 mb-2">Usluge</h2>
+								<p class="p-0 font-size-16">Euromedik je tehnički najbolje opremljena zdravstvena privatna ustanova u Srbiji i regionu.</br>
+									U Euromediku radi više od 850 zaposlednih lekara specijalista, medicinskih sestara, tehničara, fizioterapeuta, RTG tehničara sa dugogodišnjim iskustvom. Među nasim ekspertima je i veliki broj kolega sa najvišim naučnim i stručnim zvanjima. 
+									</p>
+								<a href="{% url "categories" %}" class="text-uppercase btn btn-bordered border-white btn-hover-secondary px-2 font-size-15" id="pretrazite-usluge">Pretražite usluge</a>
+							</div>
+						</div>
+						
+						<div class="col-12 col-md-4 row-same-height">
+							<div class="card bg-primary px-2 px-lg-3 py-3">
+								<h2 class="font-size-36 mb-2">Cenovnik</h2>
+								<p class="p-0 font-size-16">Trudimo se da usluge obavljamo po najpovoljnijim cenama, zbog čega smo afirmisani kao ustanova sa najboljim odnosom kvalitet-cena u korist naših pacijenata. Potvrda kvaliteta našeg višedecenijskog rada je veliki broj pacijenata koji nam svakodnevno poklanjaju svoje najvrednije-njihovo zdravlje. </p>
+								<a href="{% url "pricing" %}" class="text-uppercase btn btn-bordered border-white btn-hover-secondary px-2 font-size-15" id="pogledajte-cenovnik">Pogledajte cenovnik</a>
+							</div>
+						</div>
+							
+						<div class="col-12 col-md-4 row-same-height">
+							<div class="card bg-primary px-2 px-lg-3 py-3">
+								<h2 class="font-size-36 mb-2">Lokacije</h2>
+								<p class="p-0 font-size-16">Preglede i intervencije obavljamo u prijatnom ambijentu naših 11 ustanova u Beogradu, bez čekanja, od kojih je 3 opšte bolnice, 5 domova zdravlja sa jednom ambulantom, i dve poliklnike. </br>Odaberite Vama najbližu lokaciju i zakažite željenu uslugu u istom danu ili u najkraćem mogućem roku. </p>
+								<a href="{% url "hospitals" %}" class="text-uppercase btn btn-bordered border-white btn-hover-secondary px-2 font-size-15" id="pronadjite-nas">Pronađite nas</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section class="pt-40 pb-20 py-md-40 d-flex bg-image diagnostics">
+		<div class="container align-self-center">
+			<div class="row justify-content-center text-white text-md-center text-left">
+
+				<div class="col-12 col-md-12 col-lg-10 pl-3 px-md-2">
+					<h2>Dijagnostika</h2>
+					<p class="p-0">U EUROMEDIK ustanovama, možete uraditi sve vrste dijagnostičkih pregleda: <strong>ultrazvučni pregled</strong> - pomoću savremenih
+						Simensovih aparata, <strong>magnetnu rezonancu</strong> - neinvanzivan i precizan pregled koji daje konkretnu sliku o zdravlju čitavog
+						organizma, <strong>rendgen</strong> - snimanje različitih delova tela primenom X zraka, <strong>mamografiju</strong> - rendgensku tehniku za rano
+						otkrivanje oboljenja dojke ili <strong>skener</strong>, koji se obavlja na najsavremenijim MSCT multilajsnim skenerima. </p>
+						
+						<div class="d-none d-md-flex flex-wrap justify-content-center">
+							<a href="{% url "categories-detail" "ultrazvuk-uz-sa-kolor-doplerom" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Ultrazvučni pregledi</a>
+							<a href="{% url "categories-detail" "rendgen-rtg" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Rendgen (RTG)</a>
+							<a href="{% url "categories-detail" "magnetna-rezonancija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Magnetna rezonancija</a>
+							<a href="{% url "categories-detail" "multislajsni-skener-msct" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Multislajsni skener</a>
+							<a href="{% url "categories-detail" "mamografija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Mamografija</a>
+							<a href="{% url "categories" %}#dijagnostika" class="font-weight-bold btn btn-secondary btn-hover-primary mb-3 py-15 px-2 font-size-16 text-uppercase">Saznaj više</a>
+					</div>
+						</div>
+
+						<div class="d-block d-md-none">
+							<a href="{% url "categories" %}" class="text-uppercase font-weight-light btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-16 text-uppercase">Dijagnostika</a>
+						</div>
+		
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section class="pt-40 pb-20 py-md-80 d-flex bg-image spec-check">
+		<div class="container align-self-center">
+			<div class="row justify-content-center text-md-center text-left">
+
+				<div class="col-12 col-md-12 col-lg-10 pl-3 px-md-2">
+					<h2 class="text-secondary">Specijalistički pregledi</h2>
+					<p class="p-0">Specijalistički pregled obavlja lekar specijalista, a sastoji se od razgovora s pacijentom tokom kog uzima detaljne podatke o pacijentovom stanju, pređašnjim bolestima, bolestima u bližoj porodici te sadašnjim tegobama (anamneza) i detaljnog kliničkog pregleda. Specijalistički 
+							pregled je potreban kod pojave zdravstvenih tegoba, kao sistematski (preventivni) pregled ili u sklopu predoperativne obrade.</p>
+			
+				</div>
+
+				<div class="col-12 col-lg-10 mt-3">
+					<div class="d-none d-md-flex flex-wrap justify-content-center">
+						<a href="{% url "categories-detail" "ginekologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Ginekologija</a>
+						<a href="{% url "categories-detail" "kardiologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Kardiologija</a>
+						<a href="{% url "categories-detail" "endokrinologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Endokrinologija</a>
+						<a href="{% url "categories-detail" "gastroenterologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Gastroenterologija</a>
+						<a href="{% url "categories-detail" "pulmologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Pulmologija</a>
+						<a href="{% url "categories-detail" "nefrologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Nefrologija</a>
+						<a href="{% url "categories-detail" "hematologija" %}" class="font-weight-bold btn btn-bordered border-secondary color-secondary btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Hematologija</a>
+						<a href="{% url "categories" %}#specijalisticki-pregledi" class="font-weight-bold btn btn-secondary btn-hover-primary mb-3 py-15 px-2 font-size-16 text-uppercase">Saznaj više</a>
+					</div>
+
+					<div class="d-block d-md-none">
+						<a href="{% url "categories" %}" class="text-uppercase font-weight-light btn btn-secondary btn-hover-secondary mb-3 mb-lg-0 font-size-16">Specijalistički pregledi</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section class="pt-40 pb-20 py-md-40 d-flex bg-image surgery">
+		<div class="container align-self-center">
+			<div class="row justify-content-center text-white text-md-center text-left">
+
+				<div class="col-12 col-md-12 col-lg-10 pl-3 px-md-2">
+					<h2>Hirurgija</h2>
+
+					<p class="p-0">Hirurgija je grana medicine koja se bavi proučavanjem i tretmanom različitih bolesti i povreda na operativni, manuelni ili instrumentalni način. U EUROMEDIK bolnicama možete obaviti sve vrste hiruških intervencija iz različitih hirurških oblasti</strong></p>
+						
+					<div class="d-none d-md-flex flex-wrap justify-content-center">
+						<a href="{% url "categories-detail" "oftalmohirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Oftalmohirurgija</a>
+						<a href="{% url "categories-detail" "opsta-i-abdominalna-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Opšta i abdominalna hirurgija</a>
+						<a href="{% url "categories-detail" "gastroenteroloska-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Gastroenterološka hirurgija</a>
+						<a href="{% url "categories-detail" "vaskularna-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Vaskularna hirurgija</a>
+						<a href="{% url "categories-detail" "uroloska-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Urološka hirurgija</a>
+						<a href="{% url "categories-detail" "ginekoloska-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Ginekološka hirurgija</a>
+						<a href="{% url "categories-detail" "ortopedska-hirurgija" %}" class="font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 py-15 px-2 font-size-16 text-uppercase">Ortopedska hirurgija</a>
+						<a href="{% url "categories" %}#hirurgija" class="font-weight-bold btn btn-secondary btn-hover-primary mb-3 py-15 px-2 font-size-16 text-uppercase">Saznaj više</a>
+					</div>
+
+					<div class="d-block d-md-none">
+						<a href="{% url "categories" %}" class="text-uppercase font-weight-light btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-16">Intervencije</a>
+					</div>
+	
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section class="vc_row d-flex py-2">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-12 col-sm-6 pb-2 pb-sm-1 pr-sm-1">
+					<div class="ld-media-item contents-visible mb-0">
+						<div class="youtube-player" data-id="I9UaRV8ICaM"></div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 pb-2 pb-sm-1 pl-sm-1">
+					<div class="ld-media-item contents-visible mb-0">
+						<div class="youtube-player" data-id="vBvR7yhUkDs"></div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 pb-2 pb-sm-1 pr-sm-1">
+					<div class="ld-media-item contents-visible mb-0">
+						<div class="youtube-player" data-id="VT4bbeFzMTI"></div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-6 pb-2 pb-sm-1 pl-sm-1">
+					<div class="ld-media-item contents-visible mb-0">
+						<div class="youtube-player" data-id="2ipiQJksvy4"></div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}
+{% block user_scripts %}
+
+<script defer>
+	registerSearch("suggestSearch", "searchResults");
+</script>
+{% endblock %}

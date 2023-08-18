@@ -1,0 +1,89 @@
+{% load static %}
+<div class="lqd-back-to-top is-active is-visible" data-back-to-top="true">
+	<a href="#top" data-localscroll="true">
+		<i class="fa fa-angle-up"></i>
+	</a>
+</div>
+
+<footer class="main-footer cross-bg pt-60 mb-60 mb-xl-0">
+	<section>
+		<div class="container">
+			<div class="row flex-md-row flex-column-reverse justify-content-center">
+				<div class="lqd-column col-md-5 col-sm-12 mb-md-0 mb-4 text-sm-left text-center">
+					<div>
+						<img src="{% static "img/euromedik-white-w-green-logo.svg" %}" alt="Euromedik">
+					</div>
+
+					<div>
+						<p class="text-sm-left text-center">Euromedik je najveći privatni
+							zdravstveni sistem u Srbiji, osnovan 2002. godine sa ciljem da
+							korisnicima omogući najkvalitetniju medicinsku uslugu od strane vodećih
+							specijalista i
+							subspecijalista iz gotovo svih oblasti medicine, uz korišćenje
+							najsavremenije i
+							sertifikovane
+							medicinske opreme.</p>
+					</div>
+
+					<div>
+						<a href="{% url "hospitals" %}"
+							class="btn btn-solid btn-white text-uppercase font-size-15 font-weight-bold">
+							<span>
+								<span class="btn-txt">Sve lokacije</span>
+							</span>
+						</a>
+					</div>
+
+					<div class="footer-social pt-4">
+						<a href="https://www.instagram.com/euromediksistem/" target="_blank"><i class="fa fa-instagram"></i></a>
+						<a href="https://www.facebook.com/euromediksistem" target="_blank"><i class="fa fa-facebook-f"></i></a>
+						<!--<a href="https://www.youtube.com/channel/UCk9wwuiHS8UTgWqkH-RnrJQ/featured" target="_blank"><i class="fab fa-youtube"></i></a>-->
+					</div>
+
+				</div><!-- /.col-md-3 col-sm-6 -->
+
+				<div class="lqd-column col-md-2 col-sm-6 d-none d-md-block">
+					<h3 class="widget-title">Meni</h3>
+					<ul class="lqd-custom-menu reset-ul">
+						<li><a href="/">Naslovna</a></li>
+						<li><a href="{% url "categories" %}">Usluge</a></li>
+						<li><a href="{% url "hospitals" %}">Lokacije</a></li>
+						<li><a href="{% url "pricing" %}">Cenovnik</a></li>
+						<li><a href="{% url "review-packages" %}">Paketi pregleda</a></li>
+						<li><a href="/pregledi/">O pregledima</a></li>
+						<li><a href="/pregledi/karijera/">Karijera</a></li>
+						<li><a href="/pregledi/galerija/">Galerija</a></li>
+					</ul>
+
+				</div><!-- /.col-md-3 col-sm-6 -->
+
+				<div class="lqd-column col-md-5 col-sm-6 mb-md-0 mb-4 text-sm-left text-center">
+					<h3 class="widget-title">Lokacije</h3>
+					<ul class="lqd-custom-menu reset-ul">
+						{% for hospital in footer_hospitals %}
+						<li><a href="{% url "hospitals-detail" hospital.slug %}">{{hospital.name}}</a></li>
+						{% endfor %}
+					</ul>
+				</div><!-- /.col-md-3 col-sm-6 -->
+
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section>
+
+	<section>
+		<div class="container pt-30 pb-30 d-flex align-items-center flex-column flex-lg-row">
+			<div class="row justify-content-center justify-content-lg-start align-items-center col-12 col-lg-7 mb-3 mb-lg-0">
+				<div class="lqd-column d-flex justify-content-start allign-items-middle" style="padding: 0px">
+					<p class="opacity-05 text-center pt-0 mb-0">Copyright © 2023, Euromedik. Developed by
+						<a href="http://zdrabranding.com" target="_blank">ZDRA Branding</a></p>
+				</div><!-- /.col-md-6 -->
+			</div><!-- /.row -->
+			<div class="cards col-md-5 d-flex justify-content-center justify-content-lg-end allign-middle text-left">
+                        <img alt="visa" src="/static/img/cards/visa.svg" style="display: inline-block; margin:0 3px; width: 55px; background: white">
+                        <img alt="master card" src="/static/img/cards/mastercard.svg" style="display: inline-block; margin:0 3px;width: 55px; background: white">
+                        <img alt="maestro" src="/static/img/cards/maestro.svg" style="display: inline-block; margin:0 3px; width: 55px; background: white">
+                        <img alt="dina" src="/static/img/cards/dina.svg" style="display: inline-block; margin:0 3px; width: 55px; background: white">
+            </div>
+		</div><!-- /.container -->
+	</section>
+</footer><!-- /.main-footer -->

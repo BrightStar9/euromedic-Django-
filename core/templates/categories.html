@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load read_any %}
+{% block title %}
+<title>Euromedik | Spisak usluga koje možete obaviti u našim bolnicama, domovima zdravlja, stacionarima i poliklinikama</title>
+{% endblock %}
+
+
+{% block content %}
+
+<main id="content" class="content">
+
+	<!-- SEARCH START -->
+	<section class="pt-80 pb-40 d-flex bg-image usluge">
+		<div class="container align-self-center">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-8 text-center text-white">
+					<h1 class="usluge-naslov">Usluge</h1>
+					<div class="font-size-24 mb-10"><b>EUROMEDIK</b> svojim pacijentima nudi sve vrste <br class="d-none d-md-block">
+						medicinskih usluga na 11 lokacija. Pretražite naše usluge po kategorijama:
+					</div>
+				</div>
+
+				<div class="col-12 d-flex justify-content-evenly category-buttons">
+
+					<div class="d-block mobile-hidden">
+						<a href="#dijagnostika" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 text-uppercase wm-100">Dijagnostika</a>
+					</div>
+					<div class="mobile-visible">
+						<a href="#dijagnostika.mobile" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 text-uppercase wm-100">Dijagnostika</a>
+					</div>
+
+					<div class="d-block mobile-hidden">
+						<a href="#specijalisticki-pregledi" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 text-uppercase wm-100">Specijalistički pregledi</a>
+					</div>
+
+					<div class="mobile-visible">
+						<a href="#specijalisticki-pregledi.mobile" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 text-uppercase wm-100">Specijalistički pregledi</a>
+					</div>
+
+					<div class="d-block mobile-hidden">
+						<a href="#hirurgija" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 wm-100">Intervencije</a>
+					</div>
+
+					<div class="mobile-visible">
+						<a href="#hirurgija.mobile" class="text-uppercase font-weight-bold btn btn-bordered border-white btn-hover-secondary mb-3 mb-lg-0 font-size-20 text-uppercase wm-100">Intervencije</a>
+					</div>
+
+					<!--<form class="contact-form solid-bg-input mb-0">
+						<div class="row justify-content-center">
+							<div class="col-12 col-md-6 col-lg-6">
+								<fieldset>
+									<input id="suggestSearch" type="text" value="" class="form-control mb-1"
+										placeholder="Unesite naziv usluge">
+								</fieldset>
+							</div>
+							<div id="searchResults"></div>
+						</div>
+					</form>
+					-->
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- SEARCH END -->
+
+
+	{% for parent_category in categories %}
+	<section class="pt-100 d-none d-md-flex bg-image category-section-image" id="{{ parent_category.slug }}"
+	{% if parent_category.image %} style="background-image: url('{{ parent_category.image.url }}');" {% endif %}>
+		<div class="container align-self-center">
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<h1 class="text-center text-md-left text-secondary font-weight-bold mb-0">
+						{{ parent_category.name }}
+					</h1>
+					<p class="font-size-18 pl-md-0 text-md-justify text-black mb-0">
+						{{ parent_category.description | safe }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- mobile version -->
+	<section id="{{ parent_category.slug }}.mobile" class="pt-100 pb-100 d-flex d-md-none category-section-image"
+                    {% if parent_category.image_mobile %} style="background-image: url('{{ parent_category.image_mobile.url }}');"
+					{% endif %}>
+
+			<div class="container align-self-center">
+				<div class="row">
+				<div class="col-12 col-md-6">
+					<h1 class="text-center text-md-left text-secondary font-weight-bold mb-0">
+					{{ parent_category.name }}
+					</h1>
+					{{ parent_category.description | safe }}
+				</div>
+				</div>
+			</div>
+	</section>
+
+	<section class="vc_row py-40 py-md-80">
+		<div class="container align-self-center">
+			<div class="row" id="categories-container">
+				{% for category in parent_category.children.all %}
+				<div class="lqd-column service col-12 offset-sm-0 col-sm-6 col-md-4 col-xl-3">
+					<a href="{% url "categories-detail" category.slug %}">
+						<div class="iconbox iconbox-service iconbox-circle iconbox-shadow-hover
+										iconbox-xl iconbox-heading-sm iconbox-filled iconbox-filled-hover 
+										iconbox-has-fill-element border-athens-gray pt-md-0 pb-md-35 py-10">
+							<div class="d-flex flex-wrap align-content-md-center align-items-md-center flex-grow-1
+										flex-sm-column justify-content-start align-items-center align-content-start 
+										justify-content-sm-start justify-items-sm-center align-content-sm-center w-100 px-md-0 px-1">
+								<span class="iconbox-fill-el iconbox-fill-el-hover"
+									style="background-image: url({% static "img/usluge/bg.jpg" %});"></span>
+
+								<div class="category-image-wrap d-none d-md-block z-index-1">
+									<figure>
+                                        {% if category.featured_image %}
+                                          <img src="{{ category.featured_image.url }}" alt="{{category.name}}">
+                                        {% endif %}
+									</figure>
+								</div>
+
+								<div class="contents px-2 px-md-0">
+									<h3 class="mb-0 text-primary text-left text-sm-center">{{ category.name }}</h3>
+									<p class="d-none d-md-block">{{ category.excerpt }}</p>
+									<span
+										class="btn-link d-none d-md-block font-weight-bold text-uppercase">Saznaj više</span>
+								</div><!-- /.contents -->
+							</div>
+						</div><!-- /.iconbbox -->
+					</a>
+				</div><!-- /.lqd-column col-6 col-sm-6 col-md-4 col-xl-3 -->
+				{% endfor %}
+
+			</div>
+		</div>
+	</section>
+	{% endfor %}
+
+</main> <!-- .#content.content -->
+
+
+{% endblock %}
+
+{% block user_scripts %}
+<script defer>
+	registerSearch("suggestSearch", "searchResults");
+</script>
+<script src="{% static "js/truncate-text.js" %}" type="text/javascript"></script>
+
+{% endblock %}

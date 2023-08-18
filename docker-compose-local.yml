@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 'v3rys3cr3t'
+      POSTGRES_USER: 'euromedik'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  es:
+    image: elasticsearch:7.3.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - cluster.name=euromk-cluster-local
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - discovery.type=single-node
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 18080:8080
+
+volumes:
+  db-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/db_data
+      o: bind
+  es-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/es_data
+      o: bind

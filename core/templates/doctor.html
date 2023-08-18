@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Euromedik | Doktori - {{ doctor.full_name }}</title>
+
+    <meta property="og:title" content="Euromedik | Doktori - {{ doctor.full_name }}"/>
+    <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+    {% if doctor.image %}
+        <meta property="og:image"
+              content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ doctor.image.url }}"/>
+    {% endif %}
+    <meta property="og:description"
+          content="{{ doctor.biography|truncatechars:150 }}"/>
+{% endblock %}
+
+{% block content %}
+
+    <main id="content" class="content objekat-page">
+
+        <section>
+            <div class="container-fluid">
+                <div class="row flex-wrap-reverse flex-row-reverse flex-md-row bg-primary doctor-info-section">
+
+                    <div class="col-12 col-md-4 offset-md-1 text-left text-md-left px-20 px-md-0 py-40 py-md-100">
+                        <h2 class="font-weight-bold mb-0 text-none">{{ doctor.full_name }}</h2>
+                        <p class="p-0 font-size-20">{{ doctor.specialization }}  <br/> 
+                            {% if doctor.specialization_details %} {{ doctor.specialization_details }}
+                            {% endif %}   
+                        </p>
+
+                        <p class="p-0 mb-0 font-size-20">{{ doctor.biography | safe }}</p>
+
+                    </div>
+
+                    {% if doctor.image %}
+                        <div class="col-12 col-md-6 offset-md-1 bg-image py-150 hospital-mobile doctor-profile-image"
+                             style="background-image: url('{{ doctor.image.url }}'); background-position: top; background-size: contain;">
+                        </div>
+                    {% else %}
+
+                        <div class="col-12 col-md-6 offset-md-1 bg-image py-150 hospital-mobile"
+                             style="background-image: url('/static/img/lekari/lekar-4.jpg'); background-position: top;">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        {% if doctor.references.count > 0 %}
+            <div id="publishers-content">
+                <section class="vc_row pt-50 pb-80 d-flex">
+                    <div class="container align-self-center">
+
+                        <h4 class="text-uppercase text-secondary text-left text-md-left">
+                            Reference:
+                        </h4>
+
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="row">
+                                    {% for ref in doctor.references.all %}
+                                        <div class="col-12 col-md-6 d-flex flex-column">
+                                            <div class="category-single doctor-references">
+                                                <p class="reference">{{ ref.description | safe }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        {% endif %}
+
+        <!-- E OVO je onaj deo za cenovnik gde se listaju usluge koje odredjeni lekar obavlja (ali opet u okviru JEDNE sekcije) -->
+        <div id="pricing-content">
+            <section class="vc_row pt-50 pb-80 d-flex cross-bg">
+                <div class="container align-self-center">
+
+                    <h4 class="text-uppercase text-white text-left text-md-left">
+                        {{ doctor.full_name }} obavlja sledeće usluge:
+                    </h4>
+
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="row">
+                                {% for service in doctor.services %}
+                                    <div class="col-12 col-md-6 d-flex flex-column text-white">
+                                        <div class="category-single">{{ service }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Location Boxes -->
+        <section class="pt-35 pb-50">
+            <div class="container">
+                <h4 class="text-uppercase text-secondary text-center text-md-left">
+                    Lekara možete pronaći u:
+                </h4>
+
+                <div class="row lokacije">
+                    <div class="container">
+                        <ul id="lista-lokacija">
+                            {% for hospital in doctor.hospitals.all %}
+                                <li>
+
+                                    <div class="hospital-name">
+
+                                <span>
+                                    <a href="{% url "hospitals-detail" hospital.slug %}
+                    ">{{ hospital.display_html_safe | safe }}</a>
+                                </span>
+                                    </div>
+
+                                    <div class="hospital-location">
+                                        <a href="{{ hospital.location.maps_url }}"
+                                           target="_blank">
+                                    <span class="text-tamno">
+                                    {{ hospital.location.display_html_safe | safe }}
+                                    </span>
+                                        </a>
+                                    </div>
+
+                                    <div class="hospital-schedule-appointment">
+                                        <div class="hospital-location phone">
+                                            <a href="tel:
+                    {{ hospital.phone_numbers.all.0 }}">
+                                                {{ hospital.phone_numbers.all.0.number }}</a><br
+                                                class="d-none d-lg-block">
+                                            <a href="tel:
+                    {{ hospital.phone_numbers.all.1 }}">
+                                                {{ hospital.phone_numbers.all.1.number }}</a>
+                                        </div>
+
+                                        <div class="zakazi">
+                                    <span>
+                                        <a href="tel:{{ hospital.phone_numbers.all.2 }}"
+                                           class="btn btn-primary border-radius-0 font-weight-bold">ZAKAŽI</a>
+                                    </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /.container -->
+        </section>
+
+    </main> <!-- .#content.content -->
+{% endblock %}
+
+{% block user_scripts %}
+    <script src="{% static "js/filteredSearch.js" %}" type="text/javascript"></script>
+    <script defer>
+        registerSearch("suggestSearch", "searchResults");
+    </script>
+    <script defer>
+        let el = document.getElementsByClassName('filtered-search-button')[0];
+        const hospital = el.id;
+
+        function onSearch(e) {
+            e.preventDefault();
+            const term = $("#suggestSearchLower").val();
+            const category = null;
+
+            filteredSearch(term, category, hospital, ".category-section", "#pricing-content");
+        }
+
+        el.addEventListener("click", onSearch);
+    </script>
+{% endblock %}

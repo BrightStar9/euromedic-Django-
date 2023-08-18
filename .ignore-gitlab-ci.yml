@@ -1,0 +1,23 @@
+variables:
+  DEPLOY_TARGET: "euromk@euromedik.txlab.org"
+
+.relevant_branches: &relevant_branches
+  - master
+  - develop
+
+stages:
+#  - lint
+#  - test
+  - deploy
+
+deploy_to_stage:
+  image: kroniak/ssh-client
+  stage: deploy
+  only: *relevant_branches
+  script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$CI_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - scp -r ./* $DEPLOY_TARGET:/home/euromk/euromedik

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+    <title>Euromedik | {{ category.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <main id="content" class="content">
+
+        {#  desktop#}
+        <section class="vc_row pt-100 pb-100 bg-image d-none d-md-flex"
+                {% if category.image %}
+                 style="background-image: url('{{ category.image.url }}');" {% endif %}>
+            <div class="container align-self-center">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <h1 class="text-center text-md-left text-secondary font-weight-bold mb-0">{{ category.name }}</h1>
+                        <p class="font-size-18 pl-md-0 text-md-left mb-0"> {{ category.description | safe }} </p>
+                        <ol
+                                class="justify-content-md-start justify-content-center breadcrumb text-dark reset-ul inline-nav comma-sep-li bordered text-light">
+                            <li><a href="{% url "categories" %}"><span>Usluge</span></a>
+                            </li>
+                            <li><span
+                                    class="font-weight-bold text-primary">{{ category.name }}</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {#  mobile#}
+        <section class="vc_row pt-100 pb-100 bg-image d-flex d-md-none"
+                 style="background-image: url('/static/img/usluga-bg-mob.jpg'); background-size: cover;">
+            <div class="container align-self-center">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <h1 class="text-center text-md-left text-secondary font-weight-bold mb-0">{{ category.name }}</h1>
+                        <p class="font-size-18 pl-md-0 text-md-left mb-0"> {{ category.description | safe }} </p>
+                        <ol
+                                class="justify-content-md-start justify-content-center breadcrumb text-dark reset-ul inline-nav comma-sep-li bordered text-light">
+                            <li><a href="{% url "categories" %}"><span>Usluge</span></a>
+                            </li>
+                            <li><span
+                                    class="font-weight-bold text-primary">{{ category.name }}</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-3 pb-3 pt-md-50 pb-md-80 d-flex category-section bg-image">
+            <div class="container align-self-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center mb-4">
+                        <h3 class="text-secondary mb-1">Klikom na uslugu možete zakazati
+                            termin
+                        </h3>
+                        <svg class="red-cross" width="36px" height="36px"
+                             viewBox="0 0 36 36" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+                            <title>Combined Shape</title>
+                            <desc>Created with Sketch.</desc>
+                            <g stroke="none" stroke-width="1" fill="none"
+                               fill-rule="evenodd">
+                                <g transform="translate(-942.000000, -1096.000000)"
+                                   fill="#DA1D25">
+                                    <g transform="translate(0.000000, 1020.000000)">
+                                        <g transform="translate(228.000000, 0.000000)">
+                                            <path
+                                                    d="M732.064516,76 C741.935484,76 750,84.0645161 750,94 C750,103.935484 741.935484,112 732,112 C722.064516,112 714,103.935484 714,94 C714.064516,84.0645161 722.129032,76 732.064516,76 Z M732.064516,77.4193548 C722.903226,77.4193548 715.483871,84.8387097 715.483871,94 C715.483871,103.16129 722.903226,110.580645 732.064516,110.580645 C741.225806,110.580645 748.645161,103.16129 748.645161,94 C748.645161,84.8387097 741.225806,77.4193548 732.064516,77.4193548 Z M734,82.8387097 C734.645161,82.8387097 735.16129,83.3548387 735.16129,84 L735.161,90.967 L742,90.9677419 C742.645161,90.9677419 743.16129,91.483871 743.16129,92.1290323 L743.16129,95.9354839 C743.16129,96.5806452 742.645161,97.0967742 742,97.0967742 L735.161,97.096 L735.16129,103.935484 C735.16129,104.580645 734.645161,105.096774 734,105.096774 L730.193548,105.096774 C729.548387,105.096774 729.032258,104.580645 729.032258,103.935484 L729.032,97.096 L722.064516,97.0967742 C721.419355,97.0967742 720.903226,96.5806452 720.903226,95.9354839 L720.903226,92.1290323 C720.967742,91.483871 721.419355,90.9677419 722.064516,90.9677419 L729.032,90.967 L729.032258,84 C729.032258,83.3548387 729.548387,82.8387097 730.193548,82.8387097 L734,82.8387097 Z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+                    {% if category.grouped_services %}
+                        {% for key, values in group_map.items %}
+                            <div class="col-12">
+                                <h3 class="sub-cat-heading">{{ key }}</h3>
+                                <div class="row">
+                                    {% for service in values %}
+                                        <div class="col-12 col-md-6 d-flex flex-column">
+                                            <div class="category-single">
+                                        <span class="float-left category-name">
+                                          <a href="{% url "services-detail" service.slug %}">{{ service.name }}</a>
+                                        </span>
+                                                <span class="float-right category-price">
+                                                {% if not service.price %}
+                                                    Cena na upit
+                                                {% else %}
+                                                    {% if service.price_extra or service.show_price_from %}
+                                                        Od
+                                                    {% endif %}
+                                                    {{ service.price | floatformat:"0" | intcomma }} RSD
+                                                {% endif %}
+                                            </span>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+
+                        <div class="col-12">
+                            <div class="row">
+                                {% for service in category.services.all %}
+                                    <div class="col-12 col-md-6 d-flex flex-column">
+                                        <div class="category-single">
+                                        <span class="float-left category-name">
+                    {#                      TODO redirect to service by slug #}
+                                          <a href="{% url "services-detail" service.slug %}">{{ service.name }}</a>
+                                        </span>
+                                            <span class="float-right category-price">
+                                                {% if not service.price %}
+                                                    Cena na upit
+                                                {% else %}
+                                                    {% if service.price_extra or service.show_price_from %}
+                                                        Od
+                                                    {% endif %}
+                                                    {{ service.price | floatformat:"0" | intcomma }} RSD
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

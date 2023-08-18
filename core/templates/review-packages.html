@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+<title>Euromedik | Paketi pregleda </title>
+{% endblock %}
+
+{% block content %}
+
+<div id="content" class="content review-packages">
+
+	<section class="pt-40 pt-md-80 pb-40 d-flex cross-bg">
+		<div class="container align-self-center">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-8 text-center text-white">
+					<h1 class="usluge-naslov">Paketi pregleda</h1>
+					<div class="font-size-24 mb-10">EUROMEDIK svojim pacijentima nudi posebne
+						pakete <br class="d-none d-md-block">usluga koje možete dobiti po najpovoljnijim
+						cenama.
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-40 d-flex">
+		<div class="container align-self-center">
+			<div class="row justify-content-center">
+				{% for bundle in bundles %}
+				
+				<div class="lqd-column col-lg-4 col-md-6 col-12 text-center mb-3">
+					<a href="{% url "services-detail" bundle.service.slug %}">
+					<div class="fancy-box fancy-box-classes fancy-box-heading-sm">
+						{% if bundle.image %}
+						<figure class="fancy-box-image mb-0">
+							<img src="{{ bundle.image.url }}" alt="{{ bundle.name }}">
+						</figure>
+						{% endif %}
+						<div class="fancy-box-contents cross-bg sm text-white">
+
+							<div class="fancy-box-info">
+								<h2 class="text-transform-none font-size-32 mb-3">{{ bundle.name }}</h2>
+								<p class="p-0 font-size-18 mb-3">{{ bundle.description }}</p>
+								<div class="font-weight-bold btn btn-secondary btn-hover-secondary py-15 px-2">
+									{{ bundle.price | floatformat:"0" | intcomma }}
+									<span class="fw-normal">RSD</span>
+								</div>
+							</div><!-- /.fancy-box-info -->
+
+						</div><!-- /.fancy-box-contents -->
+
+					</div><!-- /.fancy-box fancy-box-classes -->
+				</a>
+				</div>
+			
+
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+</div>
+
+{% endblock %}
+{% block user_scripts %}
+
+<script defer>
+	registerSearch("suggestSearch", "searchResults");
+</script>
+
+{% endblock %}

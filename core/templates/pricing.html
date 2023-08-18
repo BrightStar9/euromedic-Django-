@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Euromedik | Cenovnik</title>
+    <meta name="description"
+          content="Euromedik je najveći privatni zdravstveni sistem u Srbiji, osnovan 2002. godine sa ciljem da korisnicima omogući najkvalitetniju medicinsku uslugu."/>
+    <meta name="keywords"
+          content="euromedik, pregledi, ultrazvuk, medicina, medicinski pregledi, ultrazvuk, magnetna rezonanca, ct skener, ginekolog, ginekologija"/>
+    <meta property="og:title"
+          content="Euromedik - Dijagnostika, specijalistički pregledi, hirurgija">
+    <meta property="og:description"
+          content="Euromedik je najveći privatni zdravstveni sistem u Srbiji, osnovan 2002. godine sa ciljem da korisnicima omogući najkvalitetniju medicinsku uslugu.">
+    <meta property="og:image"
+          content="http://euromedik.txlab.org/static/img/share/euromedik-bolnica-stacionar-poliklinika.jpg">
+    <meta property="og:url" content="http://euromedic.rs">
+{% endblock %}
+
+{% block content %}
+
+    <main id="content" class="content pricing-page">
+
+        <section class="vc_row   pt-60 pb-40 d-flex bg-image cenovnik">
+            <div class="container align-self-center">
+                <div class="row justify-content-center">
+
+                    <div class="col-12 col-md-8 text-white text-center">
+                        <h2>Cenovnik usluga</h2>
+                        <p class="opacity-07 font-size-22 p-0"> Pretražite naš cenovnik,
+                            pronađite
+                            željenu uslugu, cenu i lokaciju na kojoj želite da zakažete
+                            pregled u
+                            najkraćem roku. </p>
+                    </div>
+
+                    <div class="col-12 col-sm-10 col-md-8">
+                        <form class="contact-form solid-bg-input">
+                            <div class="row">
+                                
+                                <div class="col-12 col-md-6">
+                                    <fieldset>
+                                        <input id="search-term" type="text"
+                                               class="form-control"
+                                               placeholder="Naziv usluge">
+                                    </fieldset>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6">
+                                    <fieldset>
+                                        <select name="kategorije" id="kategorije"
+                                                class="form-control">
+                                            <option selected value="">Sve kategorije
+                                            </option>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-12">
+                                    <fieldset>
+                                        <select name="lokacija" id="lokacija"
+                                                class="form-control">
+                                            <option selected value="">Sve lokacije
+                                            </option>
+                                            {% for hospital in hospitals %}
+                                                <option value="{{ hospital.id }}">{{ hospital.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" id="filtered-search-button"
+                                            class="btn btn-secondary btn-block border-radius-0 search-icon">
+                                        Pretraži
+                                    </button>
+                                </div>
+                               
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div id="pricing-content">
+            {% for category in categories %}
+                <section class="vc_row pt-50 pb-80 d-flex category-section bg-image">
+                    <div class="container align-self-center">
+
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-8 text-center mb-4">
+                                <h4 class="text-uppercase mb-1">{{ category.name }}</h4>
+                                <svg class="red-cross" width="36px" height="36px"
+                                     viewBox="0 0 36 36"
+                                     version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+                                    <title>Combined Shape</title>
+                                    <desc>Created with Sketch.</desc>
+                                    <g stroke="none" stroke-width="1" fill="none"
+                                       fill-rule="evenodd">
+                                        <g transform="translate(-942.000000, -1096.000000)"
+                                           fill="#DA1D25">
+                                            <g transform="translate(0.000000, 1020.000000)">
+                                                <g transform="translate(228.000000, 0.000000)">
+                                                    <path
+                                                            d="M732.064516,76 C741.935484,76 750,84.0645161 750,94 C750,103.935484 741.935484,112 732,112 C722.064516,112 714,103.935484 714,94 C714.064516,84.0645161 722.129032,76 732.064516,76 Z M732.064516,77.4193548 C722.903226,77.4193548 715.483871,84.8387097 715.483871,94 C715.483871,103.16129 722.903226,110.580645 732.064516,110.580645 C741.225806,110.580645 748.645161,103.16129 748.645161,94 C748.645161,84.8387097 741.225806,77.4193548 732.064516,77.4193548 Z M734,82.8387097 C734.645161,82.8387097 735.16129,83.3548387 735.16129,84 L735.161,90.967 L742,90.9677419 C742.645161,90.9677419 743.16129,91.483871 743.16129,92.1290323 L743.16129,95.9354839 C743.16129,96.5806452 742.645161,97.0967742 742,97.0967742 L735.161,97.096 L735.16129,103.935484 C735.16129,104.580645 734.645161,105.096774 734,105.096774 L730.193548,105.096774 C729.548387,105.096774 729.032258,104.580645 729.032258,103.935484 L729.032,97.096 L722.064516,97.0967742 C721.419355,97.0967742 720.903226,96.5806452 720.903226,95.9354839 L720.903226,92.1290323 C720.967742,91.483871 721.419355,90.9677419 722.064516,90.9677419 L729.032,90.967 L729.032258,84 C729.032258,83.3548387 729.548387,82.8387097 730.193548,82.8387097 L734,82.8387097 Z">
+                                                    </path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    {% if category.grouped_services %}
+                                        {% regroup category.services.all by service_group as groups %}
+                                        {% for group in groups %}
+                                            <div class="col-12">
+                                                <h3 class="sub-cat-heading">{{ group.grouper.title }}</h3>
+                                            </div>
+                                            {% for service in group.list %}
+                                                <div class="col-12 col-md-6 d-flex flex-column">
+                                                    <div class="category-single">
+                                                        <a class="category-name"
+                                                           href="{% url "services-detail" service.slug %}">{{ service.name }}</a>
+                                                        <span class="float-right category-price">
+                                                    {% if not service.price %}
+                                                        Cena na upit
+                                                    {% else %}
+                                                        {% if service.price_extra or service.show_price_from %}
+                                                            Od
+                                                        {% endif %}
+                                                        {{ service.price | floatformat:"0" | intcomma }}
+                                                        <span class="fw-normal">RSD</span></span>
+                                                    {% endif %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for service in category.services.all %}
+                                            <div class="col-12 col-md-6 d-flex flex-column">
+                                                <div class="category-single">
+                                                    <a class="category-name"
+                                                       href="{% url "services-detail" service.slug %}">{{ service.name }}</a>
+                                                    <span class="float-right category-price">
+                                                    {% if not service.price %}
+                                                        Cena na upit
+                                                    {% else %}
+                                                        {% if service.price_extra or service.show_price_from %}
+                                                            Od
+                                                        {% endif %}
+                                                        {{ service.price | floatformat:"0" | intcomma }}
+                                                        <span class="fw-normal">RSD</span></span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </main> <!-- .#content.content -->
+    <template id="tpl-category">
+        <section class="vc_row pt-50 pb-80 d-flex category-section bg-image">
+            <div class="container align-self-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center mb-4">
+                        <h4 class="text-uppercase mb-1 tpl-category-name"></h4>
+                        <svg class="red-cross" width="36px" height="36px"
+                             viewBox="0 0 36 36"
+                             version="1.1"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+                            <title>Combined Shape</title>
+                            <desc>Created with Sketch.</desc>
+                            <g stroke="none" stroke-width="1" fill="none"
+                               fill-rule="evenodd">
+                                <g transform="translate(-942.000000, -1096.000000)"
+                                   fill="#DA1D25">
+                                    <g transform="translate(0.000000, 1020.000000)">
+                                        <g transform="translate(228.000000, 0.000000)">
+                                            <path
+                                                    d="M732.064516,76 C741.935484,76 750,84.0645161 750,94 C750,103.935484 741.935484,112 732,112 C722.064516,112 714,103.935484 714,94 C714.064516,84.0645161 722.129032,76 732.064516,76 Z M732.064516,77.4193548 C722.903226,77.4193548 715.483871,84.8387097 715.483871,94 C715.483871,103.16129 722.903226,110.580645 732.064516,110.580645 C741.225806,110.580645 748.645161,103.16129 748.645161,94 C748.645161,84.8387097 741.225806,77.4193548 732.064516,77.4193548 Z M734,82.8387097 C734.645161,82.8387097 735.16129,83.3548387 735.16129,84 L735.161,90.967 L742,90.9677419 C742.645161,90.9677419 743.16129,91.483871 743.16129,92.1290323 L743.16129,95.9354839 C743.16129,96.5806452 742.645161,97.0967742 742,97.0967742 L735.161,97.096 L735.16129,103.935484 C735.16129,104.580645 734.645161,105.096774 734,105.096774 L730.193548,105.096774 C729.548387,105.096774 729.032258,104.580645 729.032258,103.935484 L729.032,97.096 L722.064516,97.0967742 C721.419355,97.0967742 720.903226,96.5806452 720.903226,95.9354839 L720.903226,92.1290323 C720.967742,91.483871 721.419355,90.9677419 722.064516,90.9677419 L729.032,90.967 L729.032258,84 C729.032258,83.3548387 729.548387,82.8387097 730.193548,82.8387097 L734,82.8387097 Z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="col-12">
+                        <div class="row tpl-category-services">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="tpl-single-service">
+        <div class="col-12 col-md-6 d-flex flex-column">
+            <div class="category-single tpl-single-body">
+
+            </div>
+        </div>
+    </template>
+{% endblock %}
+
+{% block user_scripts %}
+    <script src="{% static "js/filteredSearch.js" %}" type="text/javascript"></script>
+    <script defer>
+        function onSearch(e) {
+            e.preventDefault();
+            const term = $("#search-term").val();
+            const category = $("#kategorije").val();
+            const hospital = $("#lokacija").val();
+
+            filteredSearch(term, category, hospital, ".category-section", "#pricing-content");
+        }
+
+        let el = document.getElementById('filtered-search-button');
+        el.addEventListener("click", onSearch);
+    </script>
+{% endblock %}
